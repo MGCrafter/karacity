@@ -5,6 +5,7 @@ import Spinner from "../../components/ui_self/spinner";
 import { motion } from "framer-motion";
 import Navbar_self from "../../components/ui_self/navbar_self";
 import Footer from "../../components/ui_self/footer";
+import Image from "next/image.js";
 
 interface RuleSection {
   id: number;
@@ -42,6 +43,18 @@ export default function FactionRulesPage() {
   return (
     <motion.div className="flex flex-col w-full min-h-screen justify-between bg-gradient-to-r from-gray-900 via-gray-600 to-gray-900">
       <Navbar_self />
+      
+            {/* Background Image */}
+      <div className="relative w-full h-72 md:h-96 lg:h-[40.2rem] flex items-center justify-center overflow-hidden"> {/* Bild leicht höher */}
+        <Image
+          src="/fraktionregeln.png"
+          alt="Regeln Background"
+          width={1400}
+          height={600}
+          className="w-full h-full object-fit"
+        />
+      </div>
+
       <div className="py-10 px-6 max-w-4xl mx-auto text-white">
         {loading ? (
           <Spinner />
