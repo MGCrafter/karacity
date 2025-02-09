@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Baue die Anwendung (für Production)
-RUN npm run build
+#RUN npm run build
 
 # Starte Next.js im Development-Modus (falls nötig, für Dev-Build)
 CMD ["npm", "run", "dev"]
