@@ -18,6 +18,7 @@ const Navbar_self = () => {
         <NavItem href="/">Home</NavItem>
         <NavItem href="/regeln">Regeln</NavItem>
         <NavItem href="/fraktionsregeln">Fraktionsregeln</NavItem>
+        <NavItem href="/contact">Kontakt</NavItem>
       </ul>
     </motion.nav>
   );

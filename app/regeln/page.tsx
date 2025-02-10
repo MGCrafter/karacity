@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { DIRECTUS_URL } from "../../lib/config.js";
 import Spinner from "../../components/ui_self/spinner";
 import { motion } from "framer-motion";
@@ -10,7 +10,7 @@ import Image from "next/image";
 interface RuleSection {
   id: number;
   title: string;
-  level: "h1" | "h2" | "h3"; // Typisierung der Überschriften auf erlaubte Werte
+  level: "h1" | "h2" | "h3";
   regel: string;
 }
 
@@ -51,10 +51,10 @@ export default function RulesPage() {
           alt="Regeln Background"
           width={1400}
           height={600}
-          className="w-full h-full object-fit"
+          className="w-full h-full object-cover"
         />
       </div>
-      
+
       <div className="py-10 px-6 max-w-4xl mx-auto text-white">
         {loading ? (
           <Spinner />
@@ -64,10 +64,10 @@ export default function RulesPage() {
           <div>
             {rules.map((rule) => (
               <div key={rule.id} className="mb-6">
-                {rule.level === "h1" && <h1 className="pt-20 text-4xl font-bold mb-2">{rule.title}</h1>}
+                {rule.level === "h1" && <h1 className="pt-16 text-4xl font-bold mb-2">{rule.title}</h1>}
                 {rule.level === "h2" && <h2 className="text-2xl font-semibold mb-2">{rule.title}</h2>}
                 {rule.level === "h3" && <h3 className="text-xl font-medium mb-2">{rule.title}</h3>}
-                <p className="text-lg leading-relaxed">{rule.regel}</p>
+                <p className="text-lg leading-relaxed whitespace-pre-line">{rule.regel}</p>
               </div>
             ))}
           </div>
@@ -77,6 +77,3 @@ export default function RulesPage() {
     </motion.div>
   );
 }
-  
-  
-  
