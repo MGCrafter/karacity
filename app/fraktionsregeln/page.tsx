@@ -65,7 +65,7 @@ export default function FactionRulesPage() {
             {rules.map((rule) => (
               <div key={rule.id} className="mb-6">
                 {rule.level === "h1" && <h1 className="pt-20 text-4xl font-bold mb-2">{rule.title}</h1>}
-                {rule.level === "h2" && <h2 className="text-2xl font-semibold mb-2">{rule.title}</h2>}
+                {rule.level === "h2" && <h2 className="pt-16 text-2xl font-semibold mb-2">{rule.title}</h2>}
                 {rule.level === "h3" && <h3 className="text-xl font-medium mb-2">{rule.title}</h3>}
                 <p className="text-lg leading-relaxed whitespace-pre-line">{rule.regel}</p>
               </div>
