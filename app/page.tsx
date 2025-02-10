@@ -9,24 +9,28 @@ import Image from "next/image";
 import Carousel from "../components/ui/carousel";
 import { HomeKarosell } from "../types/directus";
 
+interface SlideData {
+  title: string;
+  screen: string;
+}
+
 export default function HomePage() {
-  const [slides, setSlides] = useState<HomeKarosell[]>([]);
+  const [slides, setSlides] = useState<SlideData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`${DIRECTUS_URL}/items/Karosell_1?fields=id,title,screen`);
+        const response = await fetch(`${DIRECTUS_URL}/items/Karosell_1?fields=title,screen`);
         const result = await response.json();
 
         if (Array.isArray(result.data)) {
-          const formattedSlides = result.data.map((item: HomeKarosell) => ({
-            id: item.id,
+          const formattedSlides: SlideData[] = result.data.map((item: HomeKarosell) => ({
             title: item.title || "Kein Titel",
             screen: typeof item.screen === "string"
               ? `${DIRECTUS_URL}/assets/${item.screen}`
-              : `${DIRECTUS_URL}/assets/${item.screen?.id}`, // Falls `screen` ein Objekt ist
+              : `${DIRECTUS_URL}/assets/${item.screen?.id}`,
           }));
           console.log("Directus Data:", result.data);
           console.log("Formatted Slides:", formattedSlides);
@@ -54,9 +58,9 @@ export default function HomePage() {
         <Image
           src="/Background.png"
           alt="Landing Background"
-          layout="fill"
-          objectFit="cover"
-          className="absolute top-0 left-0 w-full h-full"
+          width={1920}
+          height={1080}
+          className="absolute top-0 left-0 w-full h-full object-cover"
         />
       </div>
       
@@ -64,7 +68,6 @@ export default function HomePage() {
       <div className="py-20 flex flex-col items-center">
         {loading ? <Spinner /> : error ? <p className="text-red-500">{error}</p> : <Carousel slides={slides} />}
       </div>
-      <div></div>
       <Footer />
     </motion.div>
   );
